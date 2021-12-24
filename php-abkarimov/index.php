@@ -31,3 +31,19 @@
 	<li> <a href='/2lab-2-5.php'> lab-2-5 </a> </li>
 	<li> <a href='/2lab-2-6.php'> lab-2-6 </a> </li>
 </ul>
+<p>	Лабораторная работа №3</p>
+<ul> 
+	<li> <a href='/f1.html'> f1 </a> </li>
+	<li> <a href='/f2.html'> f2 </a> </li>
+	<li> <a href='/f3.html'> f3 </a> </li>
+	<li> <a href='/f4.html'> f4 </a> </li>
+	<li> <a href='/f5.html'> f5 </a> </li>
+	<li> <a href='/f6.html'> f6 </a> </li>
+	<li> <a href='/f7.php'> f7 </a> </li>
+	<li> <a href='/s3-1.html'> s3-1 </a> </li>
+	<li> <a href='/s3-2.php'> s3-2 </a> </li>
+	<li> <a href='/s3-3.php'> s3-3 </a> </li>
+	<li> <a href='/s3-4.php'> s3-4 </a> </li>
+	<li> <a href='/s3-5.php'> s3-5 </a> </li>
+	<li> <a href='/s3-6.html'> s3-6 </a> </li>
+</ul>
