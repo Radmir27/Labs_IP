@@ -49,34 +49,33 @@ print "<p><a href=\"index.php\"> Вернуться к списку автомо
 
  $rows=mysqli_query($aCon, "SELECT idcar, iddealer, price FROM carinstock WHERE id=".$_GET['id']);
  while ($st = mysqli_fetch_array($rows)) {
- $id=$_GET['id'];
- $idcar = $st['idcar'];
- $iddealer = $st['iddealer'];
- $price = $st['price'];
+  $id=$_GET['id'];
+  $idcar = $st['idcar'];
+  $iddealer = $st['iddealer'];
+  $price = $st['price'];
  }
 print "<form action='save_edit.php' metod='get'>";
 
 print "<input type='hidden' name='name1' value='carinstock'>";
 
- $result=mysqli_query($aCon, "SELECT id FROM car");
- echo "ID автомобиля: <select name='idcar'>";
- while ($row=mysqli_fetch_array($result)){
+$cars=mysqli_query($aCon, "SELECT id, brand, model FROM car");
+$dealers=mysqli_query($aCon, "SELECT id, name FROM dealers");
+echo "Автомобиль: <select name='idcar'>";
+while ($row = mysqli_fetch_array($cars)) {
  if ($row['id'] == $idcar) {
-  echo "<option selected>" . $row['id'] . "</option>";
- } else {
-  echo "<option>" . $row['id'] . "</option>";
- }
- }
-
- echo "</select><br>ID автосалона:<select name='iddealer'>";
- $result=mysqli_query($aCon, "SELECT id FROM dealers");
- while ($row=mysqli_fetch_array($result)){
+   echo "<option selected value = " . $row['id'] . ">" . $row['brand'] . " " . $row['model'] . "</option>";
+  } else {
+   echo "<option value = " . $row['id'] . ">" . $row['brand'] . " " . $row['model'] . "</option>";
+  }
+}
+echo "</select><br>Автосалон:<select name='iddealer'>";
+while ($row = mysqli_fetch_array($dealers)) {
  if ($row['id'] == $iddealer) {
-  echo "<option selected>" . $row['id'] . "</option>";
+  echo "<option selected value = " . $row['id'] . ">" . $row['name'] . "</option>";
  } else {
-  echo "<option>" . $row['id'] . "</option>";
+  echo "<option value = " . $row['id'] . ">" . $row['name'] . "</option>";
  }
- }
+}
 
 print "
 

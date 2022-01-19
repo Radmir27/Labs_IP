@@ -44,16 +44,16 @@ print '
  mysqli_query($aCon, "SET CHARACTER SET 'utf8';");
  mysqli_query($aCon, "SET SESSION collation_connection = 'utf8_general_ci';");
  mysqli_select_db($aCon, "abkarimov") or die("Нет такой таблицы!");
- $result=mysqli_query($aCon, "SELECT id FROM car");
- echo "ID автомобиля: <select name='idcar'>";
- while ($row=mysqli_fetch_array($result)){
- echo "<option>" . $row['id'] . "</option>";
- }
- echo "</select><br>ID автосалона: <select name='iddealer'>";
- $result=mysqli_query($aCon, "SELECT id FROM dealers");
- while ($row=mysqli_fetch_array($result)){
- echo "<option>" . $row['id'] . "</option>";
- }
+$cars=mysqli_query($aCon, "SELECT id, brand, model FROM car");
+$dealers=mysqli_query($aCon, "SELECT id, name FROM dealers");
+echo "Автомобиль: <select name='idcar'>";
+while ($row = mysqli_fetch_array($cars)) {
+   echo "<option value = " . $row['id'] . ">" . $row['brand'] . " " . $row['model'] . "</option>";
+}
+echo "</select><br>Автосалон:<select name='iddealer'>";
+while ($row = mysqli_fetch_array($dealers)) {
+  echo "<option value = " . $row['id'] . ">" . $row['name'] . "</option>";
+}
 
 print '
 

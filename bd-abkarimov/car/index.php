@@ -3,7 +3,7 @@
 <h2>Зарегистрированные автомобили:</h2>
 <table border="1">
 <tr>
- <th> ID </th> <th> Марка </th> <th> Модель </th> <th> Год выпуска </th> <th> Стоимость </th>
+ <th> ID </th> <th> Марка </th> <th> Модель </th> <th> Год выпуска </th> <th> Стоимость (руб.) </th>
  <th> Редактировать </th> <th> Уничтожить </th> </tr>
 <?php
  $aCon = mysqli_connect('localhost', 'root') or die ("Невозможно подключиться к серверу");
@@ -36,7 +36,7 @@ print("<P>Всего автомобилей: $num_rows </p>");
 <h2>Зарегистрированные автомобили в наличии:</h2>
 <table border="1">
 <tr>
- <th> ID автомобиля </th> <th> ID автосалона </th> <th> Стоимость (руб.) </th>
+ <th> Автомобиль </th> <th> Автосалон </th> <th> Стоимость (руб.) </th>
  <th> Редактировать </th> <th> Уничтожить </th> </tr>
 <?php
  $aCon = mysqli_connect('localhost', 'root') or die ("Невозможно подключиться к серверу");
@@ -46,9 +46,13 @@ print("<P>Всего автомобилей: $num_rows </p>");
  mysqli_select_db($aCon, "abkarimov") or die("Нет такой таблицы!");
  $result=mysqli_query($aCon, "SELECT * FROM carinstock");
 while ($row=mysqli_fetch_array($result)){
+ $cars=mysqli_query($aCon, "SELECT brand, model FROM car WHERE id =" . $row['idcar']);
+ $car=mysqli_fetch_array($cars);
+ $dealers=mysqli_query($aCon, "SELECT name FROM dealers WHERE id =" . $row['iddealer']);
+ $dealer=mysqli_fetch_array($dealers);
  echo "<tr>";
- echo "<td>" . $row['idcar'] . "</td>";
- echo "<td>" . $row['iddealer'] . "</td>";
+ echo "<td>" . $car['brand'] . " " . $car['model'] . "</td>";
+ echo "<td>" . $dealer['name'] . "</td>";
  echo "<td>" . $row['price'] . "</td>";
  echo "<td><a href='edit.php?id=" . $row['id']
 . "&name=carinstock'>Редактировать</a></td>";
