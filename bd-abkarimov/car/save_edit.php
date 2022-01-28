@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['logged_user']) ) :
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+?>
+
 <html> <body>
 <?php
  $aCon = mysqli_connect('localhost', 'root') or die ("Невозможно подключиться к серверу");
@@ -38,3 +44,7 @@
 ?>
 </body> </html>
 
+<?php else : ?>
+Вы не являетесь авторизованным пользователем для этого действия
+<p><a href="login.php">Авторизоваться</a><br>
+<?php endif; ?>

@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['logged_user'])) :
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+?>
+
 <html>
 <body>
 <?php
@@ -41,7 +47,7 @@ value='".$price."'>";
 print "<input type='hidden' name='id' value='".$id."'> <br>";
 print "<input type='submit' name='' value='Сохранить'>";
 print "</form>";
-print "<p><a href=\"index.php\"> Вернуться к списку автомобилей </a>";
+print "<p><a href=\"index.php\"> Вернуться к списку </a>";
 
 } elseif ($_GET['name'] == 'carinstock') {
 
@@ -85,7 +91,7 @@ value='".$price."'>";
 print "<input type='hidden' name='id' value='".$id."'> <br>";
 print "<input type='submit' name='' value='Сохранить'>";
 print "</form>";
-print "<p><a href=\"index.php\"> Вернуться к списку автомобилей в наличии </a>";
+print "<p><a href=\"index.php\"> Вернуться к списку </a>";
 
 } elseif ($_GET['name'] == 'dealer') {
 
@@ -108,9 +114,14 @@ value='".$address."'>";
 print "<input type='hidden' name='id' value='".$id."'> <br>";
 print "<input type='submit' name='' value='Сохранить'>";
 print "</form>";
-print "<p><a href=\"index.php\"> Вернуться к списку автосалонов </a>";
+print "<p><a href=\"index.php\"> Вернуться к списку </a>";
 
 } else echo ' неправильно введен предмет изменения';
 ?>
 </body>
 </html>
+
+<?php else : ?>
+Вы не являетесь авторизованным пользователем для этого действия
+<p><a href="login.php">Авторизоваться</a><br>
+<?php endif; ?>

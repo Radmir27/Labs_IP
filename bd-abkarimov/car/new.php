@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['logged_user']) ) :
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+?>
+
 <html>
 <?php
 
@@ -96,3 +102,8 @@ header("Location: index.php");
 ?>
 </body>
 </html>
+
+<?php else : ?>
+Вы не являетесь авторизованным пользователем для вывода таблиц
+<p><a href="login.php">Авторизоваться</a><br>
+<?php endif; ?>

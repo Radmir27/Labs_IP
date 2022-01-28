@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(isset($_SESSION['logged_user']) ) :
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+?>
+
+<?php
  $aCon = mysqli_connect('localhost', 'root') or die ("Невозможно подключиться к серверу");
  mysqli_set_charset($aCon, "utf8");
  mysqli_select_db($aCon, "abkarimov") or die("Нет такой таблицы!");
@@ -45,3 +51,8 @@
 
  } else echo ' неправильно введен предмет сохранения';
 ?>
+
+<?php else : ?>
+Вы не являетесь авторизованным пользователем для вывода таблиц
+<p><a href="login.php">Авторизоваться</a><br>
+<?php endif; ?>

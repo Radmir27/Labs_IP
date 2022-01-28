@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(isset($_SESSION['logged_user']) && $_SESSION['type'] == 2) :
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+?>
+
+<?php
 require_once('tcpdf/tcpdf.php');
 
 $aCon = mysqli_connect('localhost', 'root') or die ("Невозможно подключиться к серверу");
@@ -52,3 +58,8 @@ $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
 $pdf->Output('document.pdf', 'I');
 ?>
+
+<?php else : ?>
+Вы не являетесь администратором для этого действия
+<p><a href="index.php">Вернуться к таблицам</a><br>
+<?php endif; ?>

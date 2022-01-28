@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(isset($_SESSION['logged_user']) && $_SESSION['type'] == 2) :
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+?>
+
+<?php
 $filename = "otchet_" . date('Ymd') . ".xls";
 
 header("Content-Disposition: attachment; filename=\"$filename\"");
@@ -44,3 +50,8 @@ while ($row=mysqli_fetch_array($result)) {
 };
 ?>
 </table>
+
+<?php else : ?>
+Вы не являетесь администратором для этого действия
+<p><a href="index.php">Вернуться к таблицам</a><br>
+<?php endif; ?>
